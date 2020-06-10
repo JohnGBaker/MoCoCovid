@@ -246,6 +246,8 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
     ax1.grid(axis='y',which='major')
     
     datebase = np.datetime64('2020-03-04')
+    if col=='20853':datebase = np.datetime64('2020-04-11')
+        
     ic=0
     for fitday in fitdays:
         #prep for fit
