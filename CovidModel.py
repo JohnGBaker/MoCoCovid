@@ -210,43 +210,48 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
     ys=np.log(coviddata[col+' cases'].dropna().values)
     ndata=len(ys)
     ts=ts[:ndata]
+    
+    datebase = np.datetime64('2020-03-04')
+    dfri=2
+    dfri=6
+    if col=='20853':
+        datebase = np.datetime64('2020-04-11')
+        
     if fitdays is None:
         #print('computing fitdays. last day is',ts[-1])
         maxfits=6
         spacing=7
-        fitdays=ts[(ts-2)%spacing==0]
+        fitdays=ts[(ts-dfri)%spacing==0]
         #print('fitdays=',fitdays)
         if len(fitdays)>maxfits: fitdays=fitdays[-maxfits:]
         #print('fitdays=',fitdays)
   
     #create fig
     colors=['b','g','r','c','m','y']
-    fig,axs=plt.subplots(2,figsize=(15,20))
-    ax0=axs[0]
-    ax1=axs[1]
+    fig,axs=plt.subplots(1,figsize=(15,20))
+    #ax0=axs[0]
+    ax1=axs[0]
     #locator = mdates.AutoDateLocator(minticks=int(ndata/14), maxticks=20)
     locator=mdates.MonthLocator()
     minorloc=mdates.WeekdayLocator(mdates.FR)
     #formatter = mdates.ConciseDateFormatter(locator)
     formatter = mdates.DateFormatter('%b')
     minorform = mdates.DateFormatter('%m-%d')
-    ax0.xaxis.set_major_locator(locator)
-    ax0.xaxis.set_minor_locator(minorloc)    
-    ax0.xaxis.set_major_formatter(formatter)
-    ax0.xaxis.set_minor_formatter(minorform)
-    ax0.xaxis.set_tick_params(which='major',pad=15)
+    #ax0.xaxis.set_major_locator(locator)
+    #ax0.xaxis.set_minor_locator(minorloc)    
+    #ax0.xaxis.set_major_formatter(formatter)
+    #ax0.xaxis.set_minor_formatter(minorform)
+    #ax0.xaxis.set_tick_params(which='major',pad=15)
     ax1.xaxis.set_major_locator(locator)
     ax1.xaxis.set_minor_locator(minorloc)    
     ax1.xaxis.set_major_formatter(formatter)
     ax1.xaxis.set_minor_formatter(minorform)
     ax1.xaxis.set_tick_params(which='major',pad=15)
-    ax0.grid(axis='x',which='minor')
-    ax0.grid(axis='y',which='major')
+    #ax0.grid(axis='x',which='minor')
+    #ax0.grid(axis='y',which='major')
     ax1.grid(axis='x',which='minor')
     ax1.grid(axis='y',which='major')
     
-    datebase = np.datetime64('2020-03-04')
-    if col=='20853':datebase = np.datetime64('2020-04-11')
         
     ic=0
     for fitday in fitdays:
@@ -270,33 +275,33 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         [t,f,fm,fp]=make_model(fts,fys,fw,tmax,1)
         #print('x weight',f3m,f3p)
         if delta: #plot day-to-day difference
-            ax0.plot(datebase+t[1:],f[1:]-f[:-1],c,label='x weight',alpha=fade)
+            #ax0.plot(datebase+t[1:],f[1:]-f[:-1],c,label='x weight',alpha=fade)
             ax1.plot(datebase+t[1:],np.exp(f[1:])-np.exp(f[:-1]),c,label='x weight',alpha=fade)
-            ax0.plot(datebase+fts[-1:],fys[-1:]-fys[-2:-1],c+'.',ms=20)
+            #ax0.plot(datebase+fts[-1:],fys[-1:]-fys[-2:-1],c+'.',ms=20)
             ax1.plot(datebase+fts[-1:],np.exp(fys[-1:])-np.exp(fys[-2:-1]),c+'.',ms=20)
-            ax0.fill_between(datebase+t[1:],
-                             fm[1:]-fm[:-1],
-                             fp[1:]-fp[:-1],
-                             color=c,alpha=0.2*fade)
+            #ax0.fill_between(datebase+t[1:],
+            #                 fm[1:]-fm[:-1],
+            #                 fp[1:]-fp[:-1],
+            #                 color=c,alpha=0.2*fade)
             ax1.fill_between(datebase+t[1:],
                              np.exp(fm[1:])-np.exp(fm[:-1]),
                              np.exp(fp[1:])-np.exp(fp[:-1]),
                              color=c,alpha=0.2*fade)
         else:
-            ax0.plot(datebase+t,[max([0,x])for x in f],c,label='x weight',alpha=fade)
+            #ax0.plot(datebase+t,[max([0,x])for x in f],c,label='x weight',alpha=fade)
             ax1.plot(datebase+t[0:],np.exp(f),c,label='x weight',alpha=fade)
-            ax0.plot(datebase+fts[-1:],fys[-1:],c+'.',ms=20)
+            #ax0.plot(datebase+fts[-1:],fys[-1:],c+'.',ms=20)
             ax1.plot(datebase+fts[-1:],np.exp(fys[-1:]),c+'.',ms=20)
-            ax0.fill_between(datebase+t,[max([0,x])for x in fm],[max([0,x])for x in fp],color=c,alpha=0.2*fade)
+            #ax0.fill_between(datebase+t,[max([0,x])for x in fm],[max([0,x])for x in fp],color=c,alpha=0.2*fade)
             ax1.fill_between(datebase+t,np.exp(fm),np.exp(fp),color=c,alpha=0.2*fade)
 
     #plot data
     c='k'
     if delta:
-        ax0.plot(datebase+ts[1:],ys[1:]-ys[:-1],c+'.',ms=10)
+        #ax0.plot(datebase+ts[1:],ys[1:]-ys[:-1],c+'.',ms=10)
         ax1.plot(datebase+ts[1:],np.exp(ys[1:])-np.exp(ys[:-1]),c+'.',ms=10)
     else:
-        ax0.plot(datebase+ts,ys,c+'.',ms=10)
+        #ax0.plot(datebase+ts,ys,c+'.',ms=10)
         ax1.plot(datebase+ts,np.exp(ys),c+'.',ms=10)
     
     #return fig
