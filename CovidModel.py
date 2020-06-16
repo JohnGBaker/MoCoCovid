@@ -213,9 +213,10 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
     
     datebase = np.datetime64('2020-03-04')
     dfri=2
-    dfri=6
+
     if col=='20853':
         datebase = np.datetime64('2020-04-11')
+        dfri=6 
         
     if fitdays is None:
         #print('computing fitdays. last day is',ts[-1])
