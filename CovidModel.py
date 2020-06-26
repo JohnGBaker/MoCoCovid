@@ -26,6 +26,7 @@ def model(ts,pars):
   t0=pars['t0']
 
   dt = ts-t0
+  print(d,t0)
   result = z - q * np.exp(-dt*d)
 
   return result
