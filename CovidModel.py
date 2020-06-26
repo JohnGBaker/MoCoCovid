@@ -149,7 +149,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   #solve
   q0dd =  ( wYxE*wEtxE - wYxEt*wExE ) /  ( wEtxE*wEtxE - wEtxEt*wExE )
   dnew = d0 + q0dd/q0 
-  qmin = 1e-50
+  qmin = -1
   qnew = max([qmin,(- wYxE  + q0dd*wEtxE ) / wExE])
   znew = wY + qnew*wE - q0dd*wEt
   #vprint('q0,d0,q0dd',q0,d0,q0dd)
@@ -192,10 +192,9 @@ def model_lsf(ts,ys,ws,stats=True):
     vprint('dp,pars:',dp,pars)
     dstep=0.1
     pars['d']-=dd*dstep
-    if pars['q'] < dq*dstep**2:  pars['q'] = dq*dstep**2
-    else: pars['q']-=dq*dstep
-    qmin=1e-50
-    if pars['q'] < qmin: pars['q'] = qmin
+    #if pars['q'] < dq*dstep**2:  pars['q'] = dq*dstep**2
+    #else: 
+    pars['q']-=dq*dstep
   return pars
 
 def make_model(ts, ys, n, tend, wtpow=0,it=None,nsigma=2):
