@@ -176,7 +176,8 @@ def model_lsf(ts,ys,ws,stats=True):
   pars={'q':2,'d':0.01}
   dp=1
   pars0 = dict(pars)
-  while dp > 1e-6:  
+  while dp > 1e-6: 
+    print(pars)
     pars  =  model_llsf(ts,ys,ws,pars,stats)
     dq=pars['q']-pars0['q']
     dd=pars['d']-pars0['d']
