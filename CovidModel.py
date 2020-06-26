@@ -193,6 +193,8 @@ def model_lsf(ts,ys,ws,stats=True):
     pars['d']-=dd*dstep
     if pars['q'] < dq*dstep**2:  pars['q'] = dq*dstep**2
     else: pars['q']-=dq*dstep
+    qmin=1e-50
+    if pars['q'] < qmin: pars['q'] = qmin
   return pars
 
 def make_model(ts, ys, n, tend, wtpow=0,it=None,nsigma=2):
