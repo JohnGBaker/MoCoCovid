@@ -160,7 +160,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   pars['t0'] = t0
 
   if stats:
-    #print(ts,pars)
+    print(ts,pars)
     ynew = model(ts,pars)
     print(ynew)
     residual = ys - ynew
@@ -182,7 +182,7 @@ def model_lsf(ts,ys,ws,stats=True):
   dp=1
   pars0 = dict(pars)
   while dp > 1e-6: 
-    #print(pars)
+    print('p',pars)
     pars  =  model_llsf(ts,ys,ws,pars,stats)
     dq=pars['q']-pars0['q']
     dd=pars['d']-pars0['d']
