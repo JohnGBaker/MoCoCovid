@@ -161,7 +161,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   pars['t0'] = t0
 
   if stats:
-    print(ts,pars)
+    #print(ts,pars)
     ynew = model(ts,pars)
     print(ynew)
     residual = ys - ynew
