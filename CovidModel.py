@@ -168,6 +168,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
       ynew = model(ts,pars0)
       residual = ys - ynew  
       F = sum(ws*residual*residual)
+      print(F)
       vprint('sigma,sigma0:',pars['sigma'],np.sqrt(F))
      
   return pars
