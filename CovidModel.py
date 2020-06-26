@@ -163,7 +163,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   if stats:
     #print(ts,pars)
     ynew = model(ts,pars)
-    print(ynew)
+    #print(ynew)
     residual = ys - ynew
     #print(ws,residual)
     F = sum(ws*residual*residual)
