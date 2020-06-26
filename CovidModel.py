@@ -26,7 +26,7 @@ def model(ts,pars):
   t0=pars['t0']
 
   dt = ts-t0
-  print(d,t0)
+  #print(d,t0)
   result = z - q * np.exp(-dt*d)
 
   return result
@@ -160,19 +160,19 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   pars['t0'] = t0
 
   if stats:
-    print(ts,pars)
+    #print(ts,pars)
     ynew = model(ts,pars)
     print(ynew)
     residual = ys - ynew
-    print(ws,residual)
+    #print(ws,residual)
     F = sum(ws*residual*residual)
-    print('F',F)
+    #print('F',F)
     pars['sigma']=np.sqrt(F)
     if 't0' in pars0:
       ynew = model(ts,pars0)
       residual = ys - ynew  
       F = sum(ws*residual*residual)
-      print('F0',F)
+      #print('F0',F)
       vprint('sigma,sigma0:',pars['sigma'],np.sqrt(F))
      
   return pars
@@ -182,7 +182,7 @@ def model_lsf(ts,ys,ws,stats=True):
   dp=1
   pars0 = dict(pars)
   while dp > 1e-6: 
-    print(pars)
+    #print(pars)
     pars  =  model_llsf(ts,ys,ws,pars,stats)
     dq=pars['q']-pars0['q']
     dd=pars['d']-pars0['d']
