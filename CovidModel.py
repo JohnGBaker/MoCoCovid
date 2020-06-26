@@ -162,6 +162,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   if stats:
     ynew = model(ts,pars)
     residual = ys - ynew
+    print(ws,residual)
     F = sum(ws*residual*residual)
     print('F',F)
     pars['sigma']=np.sqrt(F)
