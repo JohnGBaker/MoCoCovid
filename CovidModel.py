@@ -125,7 +125,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   t0 = sum(ws*ts)
   dt = ts-t0
   Es = np.exp(-dt*d0)
-  #vprint('t0,dt,Es:',t0,dt,Es)
+  print('t0,dt,Es:',t0,dt,Es)
 
   #compute basic means
   wE    = sum(ws*Es)
