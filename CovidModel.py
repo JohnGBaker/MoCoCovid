@@ -119,7 +119,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
 
   #normalize
   ws=ws/sum(ws)
-  vprint('ws',ws)
+  print('ws',ws)
 
   #set t0 as mean of ts
   t0 = sum(ws*ts)
