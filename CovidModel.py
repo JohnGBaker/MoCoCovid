@@ -119,13 +119,13 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
 
   #normalize
   ws=ws/sum(ws)
-  #vprint('ws',ws)
+  vprint('ws',ws)
 
   #set t0 as mean of ts
   t0 = sum(ws*ts)
   dt = ts-t0
   Es = np.exp(-dt*d0)
-  print('t0,dt,Es:',t0,dt,Es)
+  #print('t0,dt,Es:',t0,dt,Es)
 
   #compute basic means
   wE    = sum(ws*Es)
