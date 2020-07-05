@@ -149,7 +149,9 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
 
   #solve
   q0dd =  ( wYxE*wEtxE - wYxEt*wExE ) /  ( wEtxE*wEtxE - wEtxEt*wExE )
-  dnew = d0 + q0dd/q0 
+  dmin = max([0.0001,d0/10.0])
+  dnew = d0 + q0dd/q0
+  dnew = max([dnew,dmin])
   qmin = -1
   qnew = max([qmin,(- wYxE  + q0dd*wEtxE ) / wExE])
   znew = wY + qnew*wE - q0dd*wEt
