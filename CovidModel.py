@@ -119,14 +119,14 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
 
   #normalize
   ws=ws/sum(ws)
-  print('ws',ws)
+  #print('ws',ws)
 
   #set t0 as mean of ts
   t0 = sum(ws*ts)
   dt = ts-t0
   Es = np.exp(-dt*d0)
-  print('t0,dt:',t0,dt)
-  print('Es',Es)
+  #print('t0,dt:',t0,dt)
+  #print('Es',Es)
 
   #compute basic means
   wE    = sum(ws*Es)
@@ -168,9 +168,9 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
     ynew = model(ts,pars)
     #print(ynew)
     residual = ys - ynew
-    print(ws,residual)
+    #print(ws,residual)
     F = sum(ws*residual*residual)
-    print('F',F)
+    #print('F',F)
     pars['sigma']=np.sqrt(F)
     if 't0' in pars0:
       ynew = model(ts,pars0)
@@ -186,7 +186,7 @@ def model_lsf(ts,ys,ws,stats=True):
   dp=1
   pars0 = dict(pars)
   while dp > 1e-6: 
-    print('p',pars)
+    #print('p',pars)
     pars  =  model_llsf(ts,ys,ws,pars,stats)
     dq=pars['q']-pars0['q']
     dd=pars['d']-pars0['d']
