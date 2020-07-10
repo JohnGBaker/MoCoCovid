@@ -243,7 +243,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
   
     #create fig
     colors=['b','g','r','c','m','y']
-    fig,axs=plt.subplots(1,figsize=(15,10))
+    fig,axs=plt.subplots(1,figsize=(13.5,9))
     #ax0=axs[0]
     ax1=axs
     #locator = mdates.AutoDateLocator(minticks=int(ndata/14), maxticks=20)
