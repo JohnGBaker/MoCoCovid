@@ -193,7 +193,7 @@ def model_lsf(ts,ys,ws,stats=True):
     dp = (dq)**2/(pars['q']+pars0['q'])**2 + (dd)**2/(pars['d']+pars0['d'])**2
     pars0=dict(pars)
     vprint('dp,pars:',dp,pars)
-    dstep=0.1
+    dstep=0.05
     pars['d']-=dd*dstep
     #if pars['q'] < dq*dstep**2:  pars['q'] = dq*dstep**2
     #else: 
