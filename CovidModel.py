@@ -319,7 +319,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         #ax1.plot(datebase+ts[1:],np.exp(ys[1:])-np.exp(ys[:-1]),c+'.',ms=10)
         ax1.plot(x,y,c+'.',ms=10)
         x=x[6:]
-        y=[sum(y[ii-6:ii+1]) for ii in range(6,len(y))]
+        y=[np.mean(y[ii-6:ii+1]) for ii in range(6,len(y))]
         ax1.plot(x,y,'k-')
     else:
         #ax0.plot(datebase+ts,ys,c+'.',ms=10)
