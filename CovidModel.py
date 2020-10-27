@@ -251,7 +251,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
     minorloc=mdates.WeekdayLocator(mdates.FR)
     #formatter = mdates.ConciseDateFormatter(locator)
     formatter = mdates.DateFormatter('%b')
-    minorform = mdates.DateFormatter('%m-%d')
+    minorform = mdates.DateFormatter('%d')
     #ax0.xaxis.set_major_locator(locator)
     #ax0.xaxis.set_minor_locator(minorloc)    
     #ax0.xaxis.set_major_formatter(formatter)
