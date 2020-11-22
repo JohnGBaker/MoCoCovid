@@ -302,7 +302,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
                              np.exp(fm[1:])-np.exp(fm[:-1]),
                              np.exp(fp[1:])-np.exp(fp[:-1]),
                              color=c,alpha=0.2*fade)
-            ymax=max([ymax,max(np.exp(f[1:])-np.exp(f[:-1]))])
+            ymax=max([ymax,max(np.exp(fys[1:])-np.exp(fys[:-1]))])
         else:
             #ax0.plot(datebase+t,[max([0,x])for x in f],c,label='x weight',alpha=fade)
             ax1.plot(datebase+t[0:],np.exp(f),c,label='x weight',alpha=fade)
@@ -310,7 +310,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
             ax1.plot(datebase+fts[-1:],np.exp(fys[-1:]),c+'.',ms=20)
             #ax0.fill_between(datebase+t,[max([0,x])for x in fm],[max([0,x])for x in fp],color=c,alpha=0.2*fade)
             ax1.fill_between(datebase+t,np.exp(fm),np.exp(fp),color=c,alpha=0.2*fade)
-            ymax=max([ymax,max(np.exp(f))])
+            ymax=max([ymax,max(np.exp(fys))])
     #plot data
     c='k'
     if delta:
@@ -327,5 +327,5 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         ax1.plot(datebase+ts,np.exp(ys),c+'.',ms=10)
     ymax*=1.5 
     if plt.ylim()[1]>ymax: plt.ylim(top=ymax)
-    print('ylim=',plt.ylim())
+    print('ylim=',plt.ylim(),'ymax=',ymax)
     #return fig
