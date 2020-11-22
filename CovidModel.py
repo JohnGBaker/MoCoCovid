@@ -326,5 +326,5 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         #ax0.plot(datebase+ts,ys,c+'.',ms=10)
         ax1.plot(datebase+ts,np.exp(ys),c+'.',ms=10)
     ymax*=1.5 
-    if plt.ylim()>ymax: plt.ylim(ymax)
+    if plt.ylim()[1]>ymax: plt.ylim(top=ymax)
     #return fig
