@@ -187,7 +187,7 @@ def model_llsf(ts,ys_in,ws,pars0,stats=True):
   return pars
 
 def model_lsf(ts,ys,ws,stats=True):
-  pars={'q':0.9,'d':0.01,'y0'=ys[0]}
+  pars={'q':0.9,'d':0.01,'y0':ys[0]}
   dp=1
   pars0 = dict(pars)
   while dp > 1e-6: 
