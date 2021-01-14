@@ -279,9 +279,10 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         fw=fitwidth
         if ifit-fw<imin: fw=ifit-imin
         itmin=len(ts[ts<=tmin])
+ 
         fts=ts[itmin:ifit]
         fys=ys[itmin:ifit]
-        #print('fitting over {} <= t <= {}'.format(fts[0],fts[-1]))
+        print('fitting over {} <= t <= {}'.format(fts[0],fts[-1]))
         
         c=colors[len(colors)-1-ic]
         ic+=1
