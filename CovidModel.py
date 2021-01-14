@@ -190,7 +190,9 @@ def model_lsf(ts,ys,ws,stats=True):
   pars={'q':0.9,'d':0.01,'y0':0}
   dp=1
   pars0 = dict(pars)
-  while dp > 1e-6: 
+  nloop=0
+  nloopmax=100
+  while dp > 1e-6 and nloop<nloopmax: 
     #print('p',pars)
     pars  =  model_llsf(ts,ys,ws,pars,stats)
     dq=pars['q']-pars0['q']
@@ -198,11 +200,12 @@ def model_lsf(ts,ys,ws,stats=True):
     dp = (dq)**2/(pars['q']+pars0['q'])**2 + (dd)**2/(pars['d']+pars0['d'])**2
     pars0=dict(pars)
     vprint('dp,pars:',dp,pars)
-    dstep=0.005
+    dstep=0.003
     pars['d']-=dd*dstep
     #if pars['q'] < dq*dstep**2:  pars['q'] = dq*dstep**2
     #else: 
     pars['q']-=dq*dstep
+    nloop+=1
   return pars
 
 def make_model(ts, ys, n, tend, wtpow=0,it=None,nsigma=2):
