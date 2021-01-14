@@ -24,12 +24,13 @@ def model(ts,pars):
   d=pars['d']
   q=pars['q']
   t0=pars['t0']
+  y0=pars['y0']
 
   dt = ts-t0
   #print(d,t0)
   result = z - q * np.exp(-dt*d)
 
-  return result
+  return result + y0
 
 def model_err(ts, pars, sigma, pm):
   #pm=+/-1
@@ -38,6 +39,7 @@ def model_err(ts, pars, sigma, pm):
   d0=pars['d']
   q0=pars['q']
   t0=pars['t0']
+  y0=pars['y0']
 
   dt = ts-t0
 
@@ -55,9 +57,9 @@ def model_err(ts, pars, sigma, pm):
   z = z0 + pm*sigma - (q-q0)
   vprint('dz',z-z0)
   result = z - q * np.exp(-dt*d)
-  return result
+  return result + y0
 
-def model_llsf(ts,ys,ws,pars0,stats=True):
+def model_llsf(ts,ys_in,ws,pars0,stats=True):
   '''
     Perform linearlized least squares fit on model function/
       Arguments:
@@ -116,8 +118,10 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   #pars
   d0=pars0['d']
   q0=pars0['q']
+  y0=pars0['y0']
 
   #normalize
+  ys=ys_in-y0  
   ws=ws/sum(ws)
   #print('ws',ws)
 
@@ -162,6 +166,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   pars['q']  = qnew
   pars['d']  = dnew
   pars['t0'] = t0
+  pars['y0'] = y0
 
   if stats:
     #print(ts,pars)
@@ -182,7 +187,7 @@ def model_llsf(ts,ys,ws,pars0,stats=True):
   return pars
 
 def model_lsf(ts,ys,ws,stats=True):
-  pars={'q':0.9,'d':0.01}
+  pars={'q':0.9,'d':0.01,'y0'=ys[0]}
   dp=1
   pars0 = dict(pars)
   while dp > 1e-6: 
