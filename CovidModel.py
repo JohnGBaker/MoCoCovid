@@ -317,7 +317,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
             ax1.plot(datebase+fts[-1:],f0+np.exp(fys[-1:]),c+'.',ms=20)
             #ax0.fill_between(datebase+t,[max([0,x])for x in fm],[max([0,x])for x in fp],color=c,alpha=0.2*fade)
             ax1.fill_between(datebase+t,f0+np.exp(fm),f0+np.exp(fp),color=c,alpha=0.2*fade)
-            ymax=max([ymax,max(np.exp(fys))])
+            ymax=max([ymax,f0+max(np.exp(fys))])
     #plot data
     c='k'
     if delta:
