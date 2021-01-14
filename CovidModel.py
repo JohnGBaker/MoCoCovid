@@ -289,8 +289,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         itmin=ifit-fw 
         fts=ts[itmin:ifit]
         f0=np.exp(min(ys[itmin:ifit]))-1
-        fys=np.log(coviddata[col+' cases'].dropna().values-f0) 
-        fys=fys[itmin:ifit]
+        fys=np.log(coviddata[col+' cases'].dropna().values[itmin:ifit]-f0) 
         print('fitting over {} <= t <= {}'.format(fts[0],fts[-1]))
         
         c=colors[len(colors)-1-ic]
