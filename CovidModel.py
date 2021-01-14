@@ -273,7 +273,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         #prep for fit
         if fitday is None: fitday=ts[-1]
         tmax=ts[-1]+nextrap
-        tmin=10
+        tmin=minday
         ifit=len(ts[ts<=fitday+0.5])
         imin=len(ts[ts<minday])
         fw=fitwidth
