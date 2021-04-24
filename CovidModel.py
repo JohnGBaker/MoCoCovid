@@ -330,10 +330,10 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         ax1.plot(x,y,c+'.',ms=10)
         x=x[6:]
         y=[np.mean(y[ii-6:ii+1]) for ii in range(6,len(y))]
-        ax1.plot(x,y,'k-')
+        ax1.plot(x,y,'-',c='brown')
     else:
         #ax0.plot(datebase+ts,ys,c+'.',ms=10)
-        ax1.plot(datebase+ts,np.exp(ys),c+'.',ms=10)
+        ax1.plot(datebase+ts,np.exp(ys),c+'.',ms=7)
     ymax*=ylimfac
     if plt.ylim()[1]>ymax: plt.ylim(top=ymax)
     plt.ylim(bottom=-0.02*ymax)
