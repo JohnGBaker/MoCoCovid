@@ -226,7 +226,7 @@ def make_model(ts, ys, n, tend, wtpow=0,it=None,nsigma=2):
   fminus=model_err(t,pars,pars['sigma'],-1*nsigma)
   return [t,f,fplus,fminus]
 
-def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,minday=10,delta=False,col="Moco",ylimfac=1.5):
+def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,minday=10,delta=False,col="Moco",ylimfac=1.5,loft=False):
     coviddata=pd.read_csv(datafile)
     ts=coviddata.index.values+1
     ys=np.log(coviddata[col+' cases'].dropna().values)
@@ -338,4 +338,5 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
     if plt.ylim()[1]>ymax: plt.ylim(top=ymax)
     plt.ylim(bottom=-0.02*ymax)
     print('ylim=',plt.ylim(),'ymax=',ymax)
-    #return fig
+    if logy: ax1.set_yscale('log')
+#return fig
