@@ -338,5 +338,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
     if plt.ylim()[1]>ymax: plt.ylim(top=ymax)
     plt.ylim(bottom=-0.02*ymax)
     print('ylim=',plt.ylim(),'ymax=',ymax)
-    if logy: ax1.set_yscale('log')
+    if logy: 
+        ax1.set_yscale('log')
+        plt.ylim(bottom=0.02)
 #return fig
