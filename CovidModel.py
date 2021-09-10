@@ -226,7 +226,7 @@ def make_model(ts, ys, n, tend, wtpow=0,it=None,nsigma=2):
   fminus=model_err(t,pars,pars['sigma'],-1*nsigma)
   return [t,f,fplus,fminus]
 
-def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,minday=10,delta=False,col="Moco",ylimfac=1.5,logy=False):
+def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,minday=10,delta=False,col="Moco",ylimfac=1.5,wtpow=1,logy=False):
     coviddata=pd.read_csv(datafile)
     ts=coviddata.index.values+1
     ys=np.log(coviddata[col+' cases'].dropna().values)
@@ -296,7 +296,7 @@ def show_model(datafile='MoCoCovidData.csv',fitdays=None,fitwidth=30,nextrap=45,
         ic+=1
         fade=0.6**(len(fitdays)-ic)
         #make_model (x weight)
-        [t,f,fm,fp]=make_model(fts,fys,fw,tmax,1)
+        [t,f,fm,fp]=make_model(fts,fys,fw,tmax,wtpow)
         #print('x weight',f3m,f3p)
         if delta: #plot day-to-day difference
             #ax0.plot(datebase+t[1:],f[1:]-f[:-1],c,label='x weight',alpha=fade)
