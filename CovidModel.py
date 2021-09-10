@@ -217,7 +217,7 @@ def make_model(ts, ys, n, tend, wtpow=0,it=None,nsigma=2):
   istart=max([0,iend-n])
   vprint('Fitting from ',ts[istart],'to',ts[iend-1])
   ws=np.exp(wtpow*ys)
-  vprint('ws:',ws)
+  print('ws:',ws)
   pars=model_lsf(ts[istart:iend],ys[istart:iend],ws[istart:iend],stats=True)
   dt=1
   t=np.arange(ts[0],tend)
